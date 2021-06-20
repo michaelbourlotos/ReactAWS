@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "reactaws72f4eb0d": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}
