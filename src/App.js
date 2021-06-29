@@ -42,26 +42,26 @@ function App() {
       const image = await Storage.get(formData.image);
       formData.image = image;
     }
-    setNotes([ ...notes, formData ]);
+    setNotes([...notes, formData]);
     setFormData(initialFormState);
   }
 
   async function deleteNote({ id }) {
     const newNotesArray = notes.filter(note => note.id !== id);
     setNotes(newNotesArray);
-    await API.graphql({ query: deleteNoteMutation, variables: { input: { id } }});
+    await API.graphql({ query: deleteNoteMutation, variables: { input: { id } } });
   }
 
   return (
     <div className="App">
-      <h1>My Notes App</h1>
+      <h1>Notes</h1>
       <input
-        onChange={e => setFormData({ ...formData, 'name': e.target.value})}
+        onChange={e => setFormData({ ...formData, 'name': e.target.value })}
         placeholder="Name"
         value={formData.name}
       />
       <input
-        onChange={e => setFormData({ ...formData, 'description': e.target.value})}
+        onChange={e => setFormData({ ...formData, 'description': e.target.value })}
         placeholder="Description"
         value={formData.description}
       />
@@ -70,19 +70,19 @@ function App() {
         onChange={onChange}
       />
       <button onClick={createNote}>Create Note</button>
-      <div style={{marginBottom: 30}}>
-      {
-  notes.map(note => (
-    <div key={note.id || note.name}>
-      <h2>{note.name}</h2>
-      <p>{note.description}</p>
-      <button onClick={() => deleteNote(note)}>Delete note</button>
-      {
-        note.image && <img src={note.image} style={{width: 400}} />
-      }
-    </div>
-  ))
-}
+      <div style={{ marginBottom: 30 }}>
+        {
+          notes.map(note => (
+            <div key={note.id || note.name}>
+              <h2>{note.name}</h2>
+              <p>{note.description}</p>
+              <button onClick={() => deleteNote(note)}>Delete note</button>
+              {
+                note.image && <img src={note.image} style={{ width: 400 }} />
+              }
+            </div>
+          ))
+        }
       </div>
       <AmplifySignOut />
     </div>
